@@ -1,6 +1,6 @@
-# agents.py
+# agents.py (修正版本)
 from langgraph.graph import Graph
-from typing import Dict, List, Any
+from typing import Dict, Any, List
 import json
 import re
 from deepseek_adapter import DeepSeekAdapter
@@ -202,15 +202,27 @@ class HumanSimulatorAgent(BaseAgent):
         )
         
         response = self.client.call_llm(prompt)
-        return self._parse_response(response)
+        return self._parse_response(response, state.next_instructions)
     
-    def _parse_response(self, text: str) -> Dict[str, Any]:
+    def _parse_response(self, text: str, next_instructions: List[str]) -> Dict[str, Any]:
+        # 修正：使用传入的next_instructions参数而不是未定义的state
         selected_match = re.search(r"Selected Plan with number:\s*\d+\.\s*(.+)", text)
-        selected_instruction = selected_match.group(1) if selected_match else state.next_instructions[0]
+        if selected_match:
+            selected_instruction = selected_match.group(1).strip()
+            # 尝试确定选择的指令索引
+            selected_index = 0
+            for i, instruction in enumerate(next_instructions):
+                if selected_instruction in instruction or instruction in selected_instruction:
+                    selected_index = i
+                    break
+        else:
+            # 如果没有匹配到，使用第一个指令作为默认
+            selected_instruction = next_instructions[0] if next_instructions else "继续前进"
+            selected_index = 0
         
         return {
             "selected_instruction": selected_instruction,
-            "selected_index": 0  # 简化处理，实际应根据选择确定
+            "selected_index": selected_index
         }
 
 class PsychometricEvaluator:
