@@ -1,0 +1,443 @@
+{
+  "extroversion_scale": [
+    {
+      "question": "At a party do you:",
+      "options": {
+        "Interact with many, including strangers": 1,
+        "Interact with a few, known to you": 0
+      }
+    },
+    {
+      "question": "At parties do you:",
+      "options": {
+        "Stay late, with increasing energy": 1,
+        "Leave early with decreased energy": 0
+      }
+    },
+    {
+      "question": "In your social groups do you:",
+      "options": {
+        "Keep abreast of other’s happenings": 1,
+        "Get behind on the news": 0
+      }
+    },
+    {
+      "question": "In phoning do you:",
+      "options": {
+        "Rarely question that it will all be said": 1,
+        "Rehearse what you’ll say": 0
+      }
+    },
+    {
+      "question": "In company do you:",
+      "options": {
+        "Initiate conversation": 1,
+        "Wait to be approached": 0
+      }
+    },
+    {
+      "question": "Does new and non-routine interaction with others:",
+      "options": {
+        "Stimulate and energize you": 1,
+        "Tax your reserves": 0
+      }
+    },
+    {
+      "question": "Do you prefer:",
+      "options": {
+        "Many friends with brief contact": 1,
+        "A few friends with more lengthy contact": 0
+      }
+    },
+    {
+      "question": "Do you:",
+      "options": {
+        "Speak easily and at length with strangers": 1,
+        "Find little to say to strangers": 0
+      }
+    },
+    {
+      "question": "When the phone rings do you:",
+      "options": {
+        "Hasten to get to it first": 1,
+        "Hope someone else will answer": 0
+      }
+    },
+    {
+      "question": "Are you more inclined to be:",
+      "options": {
+        "Easy to approach": 1,
+        "Somewhat reserved": 0
+      }
+    }
+  ],
+  "depression_scale": [
+    {
+      "question": "Little interest or pleasure in doing things?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Feeling down, depressed, or hopeless?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Trouble falling or staying asleep, or sleeping too much?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Feeling tired or having little energy?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Poor appetite or overeating?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Feeling bad about yourself-or that you are a failure or have let yourself or your family down?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Trouble concentrating on things, such as reading the newspaper or watching television?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Moving or speaking so slowly that other people could have noticed. Or the opposite, being so fidgety or restless that you have been moving around a lot more than usual?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    },
+    {
+      "question": "Thoughts that you would be better off dead, or of hurting yourself?",
+      "options": {
+        "Rarely or none of the time": 0,
+        "Often or all of the time": 1
+      }
+    }
+  ],
+  "cognitive_distortions_scale": {
+    "all_or_nothing": [
+      {
+        "question": "I always do the wrong thing, I always make mistakes",
+        "options": {
+          "I hate myself": 1,
+          "I have made some good decisions with positive results in the past and will do so again. This situation is not indicative of my overall worth.": 0
+        }
+      },
+      {
+        "question": "I am trying to diet but I gained weight this week",
+        "options": {
+          "I don't have the discipline to diet.": 1,
+          "I am having difficulty losing weight but I can stay dedicated to the process.": 0
+        }
+      },
+      {
+        "question": "I am trying to write up an essay and can't think of anything",
+        "options": {
+          "I'm wasting all my time": 1,
+          "Each minute of thinking is bringing me closer to what I want to write. Don't think this is a waste of time as such.": 0
+        }
+      },
+      {
+        "question": "I am trying to write up an essay and can't think of anything",
+        "options": {
+          "I'm wasting all my time": 1,
+          "I may have wasted time. But now I know which directions do not work and which ones I should prioritize.": 0
+        }
+      },
+      {
+        "question": "I can't do anything right and I'm crying over spilling cereal on my bed and dress",
+        "options": {
+          "I'm worthless": 1,
+          "Spills are a natural part of life.": 0
+        }
+      },
+      {
+        "question": "I completely overreacted to my teenage son's grades",
+        "options": {
+          "Why isn't this kid applying himself?": 1,
+          "My son may be trying his best, but may have other things going on. I should try to talk to him to make sure there is nothing he is struggling with. I do not want my son to feel alone.": 0
+        }
+      },
+      {
+        "question": "I did badly in a writing contest I entered.",
+        "options": {
+          "I am a bad writer.": 1,
+          "My submission likely had both good and bad. While I did not win this contest, I may win others in the future.": 0
+        }
+      },
+      {
+        "question": "I did nothing with my day",
+        "options": {
+          "Don't feel like I deserve fun/enjoyment": 1,
+          "I still deserve fun and enjoyment even if I did not have a productive day.": 0
+        }
+      },
+      {
+        "question": "I did nothing with my day",
+        "options": {
+          "Don't feel like I deserve fun/enjoyment": 1,
+          "It is ok to take a day off and rest.": 0
+        }
+      },
+      {
+        "question": "I found a job I thought was perfect for me in the field I used to work in and love very much. A few days after putting in a resume and lining up several references, I found out the job was filled and I didn't even get so much as an acknowledgment of my application much less an interview when I was extremely qualified.",
+        "options": {
+          "Why can't I ever get anything I want": 1,
+          "I get some things I want and some things do not work out, my life is a balance of the two.": 0
+        }
+      }
+    ],
+    "mind_reading": [
+      {
+        "question": "A friend who is a recent widower has started dating",
+        "options": {
+          "My friend is ignoring his recently-deceased wife.": 1,
+          "Maybe my friend has mourned the loss of their partner. It doesn't mean they are no longer sad about it or are completely over it, but maybe they have made peace with the situation.": 0
+        }
+      },
+      {
+        "question": "I called a woman I love by accident during a bad time",
+        "options": {
+          "She will never love me now": 1,
+          "I do not know how she felt about this call and can express that it was a mistake to her.": 0
+        }
+      },
+      {
+        "question": "I called my friend three times this past week but she hasn't answered or called/messaged me back yet",
+        "options": {
+          "Maybe she doesn't really like me as much as I thought and like her. Maybe I'm awkward.": 1,
+          "Maybe my friend is busy with work or school. She will probably contact me when she gets a chance. It probably has nothing to do with me.": 0
+        }
+      },
+      {
+        "question": "I called my friend three times this past week but she hasn't answered or called/messaged me back yet",
+        "options": {
+          "Maybe she doesn't really like me as much as I thought and like her. Maybe I'm awkward.": 1,
+          "My friend is probably busy and wants to respond when she has more time to talk to me.": 0
+        }
+      },
+      {
+        "question": "I had tentative plans to get together with friends last week, but they never got back to me",
+        "options": {
+          "They don't really like me": 1,
+          "My friends may have gotten busy and forgotten to solidify the plans. Next time, I should reach out to confirm the plans myself.": 0
+        }
+      },
+      {
+        "question": "I hurt my family's feelings by canceling the trip they had planned to come to see me",
+        "options": {
+          "I should have made time for them.": 1,
+          "I feel sad that I had to cancel this trip but I know my family loves me and will understand.": 0
+        }
+      },
+      {
+        "question": "I run a business with my close friend and we were taking work-related photos at their house. I took the memory card home but lost it while I was walking",
+        "options": {
+          "My friend is going to be angry with me": 1,
+          "I made a mistake, and I will try to find it before I assume what will happen.": 0
+        }
+      },
+      {
+        "question": "I saw my friend comment on an Instagram post when he's been ignoring me",
+        "options": {
+          "My friend doesn't like me anymore.": 1,
+          "He probably is just not as active on social media right now.": 0
+        }
+      },
+      {
+        "question": "I was greatly irritated, almost angry, when a close friend reached out to me for assistance on taxes. I usually do them, but I did not want to be bothered this year and felt almost used",
+        "options": {
+          "I feel my friend used me.": 1,
+          "My friend may not know how busy I am and did not mean to make me feel used. I should just tell my friend that I cannot help with their taxes this year.": 0
+        }
+      },
+      {
+        "question": "I was looking forward to relaxing but my partner asked me to make dinner instead",
+        "options": {
+          "My partner thinks I am lazy.": 1,
+          "My partner asked me to make dinner, that does not mean I am lazy.": 0
+        }
+      }
+    ],
+    "should_statements": [
+      {
+        "question": "I am walking down the street in new red jeans and a stranger looked at the jeans",
+        "options": {
+          "I should have never worn these jeans and stick to blue ones": 1,
+          "These jeans look great and I can wear them whenever I want": 0
+        }
+      },
+      {
+        "question": "I am walking down the street in new red jeans and a stranger looked at the jeans",
+        "options": {
+          "I should have never worn these jeans and stick to blue ones": 1,
+          "What I wear is completely up to me. I should not pressurize myself about what I ought to have done": 0
+        }
+      },
+      {
+        "question": "I burnt the potatoes while cooking",
+        "options": {
+          "I should have been perfect": 1,
+          "I am putting unnecessary pressure on myself. It is not possible for things to be perfect and having unrealistic standards will only make me feel bad about myself": 0
+        }
+      },
+      {
+        "question": "I burnt the potatoes while cooking",
+        "options": {
+          "I should have been perfect": 1,
+          "I could have been perfect, but rest of the food is still great anyways": 0
+        }
+      },
+      {
+        "question": "I got very upset last week when I realized that I had forgotten to fill out a required form and the date that the form was due had already passed.",
+        "options": {
+          "They should have reminded me before I forgot": 1,
+          "I forgot the date, but now I know better for the future. I can complete forms right when I receive them, add the dates to my calendar, set reminders, or add them to my to-do list. Next time I will try these tactics.": 0
+        }
+      },
+      {
+        "question": "I got very upset last week when I realized that I had forgotten to fill out a required form and the date that the form was due had already passed.",
+        "options": {
+          "They should have reminded me before I forgot": 1,
+          "I should have remembered the date, but now I know that marking dates on my calendar can help with this.": 0
+        }
+      },
+      {
+        "question": "I hurt my family's feelings by canceling the trip they had planned to come to see me.",
+        "options": {
+          "I should have made time for them.": 1,
+          "I cancelled that trip because I had to. It hurts to have done so but it was the right thing": 0
+        }
+      },
+      {
+        "question": "I tried a new hairstyle but no one commented on it",
+        "options": {
+          "I shouldn't have changed my hair": 1,
+          "I changed my hair because I wanted and they look great": 0
+        }
+      },
+      {
+        "question": "I tried a new hairstyle but no one commented on it",
+        "options": {
+          "I shouldn't have changed my hair": 1,
+          "I could have kept the same hair, but I still wouldn't have drawn any attention": 0
+        }
+      },
+      {
+        "question": "I was on a date and started to cough badly as the food was too hot",
+        "options": {
+          "I should have ordered a milder dish": 1,
+          "Coughing happens, I ordered the food I wanted and it taste really nice": 0
+        }
+      },
+      {
+        "question": "I was on a date and started to cough badly as the food was too hot",
+        "options": {
+          "I should have ordered a milder dish": 1,
+          "I could have ordered something milder, but that might have resulted in a cough as well": 0
+        }
+      },
+      {
+        "question": "I was passed over for a small promotion at my place of work. The person who got the promotion was younger and less experienced than me, but a favorite of the boss.",
+        "options": {
+          "I was angry because I was the better person for the job.": 1,
+          "There may be many factors at play in a hiring situation that I am not privy to": 0
+        }
+      },
+      {
+        "question": "I went on a trip and heard a commercial for a kitchen appliance",
+        "options": {
+          "I feel so anxious maybe I left something turned on in the kitchen": 1,
+          "I'm assuming that just because I feel the fear it must mean that something scary is happening. My feelings are real, but this doesn't mean the threat is real": 0
+        }
+      },
+      {
+        "question": "I went on a trip and heard a commercial for a kitchen appliance",
+        "options": {
+          "I feel so anxious maybe I left something turned on in the kitchen": 1,
+          "I'm being overly concerned. Everything is going to be alright": 0
+        }
+      }
+    ]
+  },
+  "visual_learning_preference_scale": [
+    {
+      "question": "I prefer to see information written on the board and supplemented by visual aids and assigned readings",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I like to write things down or take notes for visual review.",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I am skillful with and enjoy developing making graphs and charts",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I can easily understand and follow directions on a map.",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I can understand a news article better by reading about it in the newspaper or online rather than by listening to a report about it on the radio or internet.",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I think the best way to remember something is to picture it in my mind",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I am good at working and solving jigsaw puzzles and mazes.",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    },
+    {
+      "question": "I prefer obtaining information about an interesting subject by reading about it.",
+      "options": {
+        "Yes": 1,
+        "No": 0
+      }
+    }
+  ]
+}
