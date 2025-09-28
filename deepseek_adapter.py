@@ -30,8 +30,6 @@ class DeepSeekAdapter:
         try:
             # 调用模型生成响应
             response = self.client.invoke(prompt)
-            print("response:\n")
-            print(response)
             # 返回响应内容
             return response.content
         except Exception as e:

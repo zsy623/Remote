@@ -8,6 +8,8 @@ from dataclasses import dataclass, field
 class GameState:
     """游戏状态类 - 存储PsychoGAT评估过程中的所有状态信息"""
     
+    paragraphs: List[str] # 游戏故事所有的段落列表
+
     # === 初始输入参数 ===
     construct: str  # 要评估的心理构念类型（如"all_or_nothing"）
     scale_json: str  # 原始量表JSON数据

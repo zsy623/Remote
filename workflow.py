@@ -1,6 +1,6 @@
 # workflow.py
 """工作流定义模块 - 使用LangGraph框架构建PsychoGAT的多Agent工作流"""
-
+import sys
 from langgraph.graph import StateGraph, END  # LangGraph的核心组件
 from agents import (  # 导入所有Agent类
     GameDesignerAgent, GameControllerAgent, 
@@ -81,10 +81,13 @@ class PsychoGATWorkflow:
         state.redesigned_scale = design_output["redesigned_scale"]
         
         # 打印设计结果摘要
-        print(f"游戏标题: {state.title}")
-        print(f"游戏大纲: {state.outline[:100]}...")
-        print(f"重新设计的量表项目数: {len(state.redesigned_scale)}")
-        
+        print(f"Title: {state.title}")
+        print(f"Outline: {state.outline}")
+        print(f"Len of Redesigned Scale: {len(state.redesigned_scale)}")
+        print(f"Redesigned Scale:\n")
+        for item in state.redesigned_scale:
+            print(f"- {item}\n")
+
         return state
     
     def controller_phase(self, state: GameState) -> GameState:
@@ -94,14 +97,18 @@ class PsychoGATWorkflow:
         controller_output = self.controller.run(state)
         
         # 更新状态中的游戏内容
-        state.current_paragraph = controller_output["paragraph"]
+        state.prev_paragraph = controller_output["previous_paragraph"]
+        state.current_paragraph = controller_output["current_paragraph"]
         state.memory = controller_output["memory"]
         state.next_instructions = controller_output["instructions"]
-        state.current_question = controller_output["question"]
+        state.current_question = controller_output["question_and_its_options"]
         
         # 打印生成内容摘要
-        print(f"生成段落: {state.current_paragraph[:50]}...")
-        print(f"可用指令: {state.next_instructions}")
+        print(f"current paragraph: {state.current_paragraph}\n")
+        print(f"memory: {state.memory}\n")
+        print(f"next instructions: {state.next_instructions}\n")
+        print(f"current question and its question: {state.current_question}\n")
+        sys.exit()
         
         return state
     

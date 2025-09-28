@@ -7,7 +7,8 @@ from typing import Dict, Any, List
 from deepseek_adapter import DeepSeekAdapter  # DeepSeek API适配器
 from prompt_templates import (  # 导入所有提示词模板
     ALL_OR_NOTHING_DESIGNER_PROMPT,
-    GAME_CONTROLLER_PROMPT, 
+    GAME_CONTROLLER_INITIAL_PROMPT, 
+    GAME_CONTROLLER_SUBSQUENT_PROMPT, 
     CRITIC_PROMPT,
     HUMAN_SIMULATOR_PROMPT
 )
@@ -20,16 +21,7 @@ class BaseAgent:
         self.client = DeepSeekAdapter()  # 创建API客户端实例
     
     def parse_response(self, text: str, pattern: str) -> Dict[str, Any]:
-        """
-        通用响应解析方法 - 使用正则表达式提取键值对
-        
-        Args:
-            text (str): 要解析的文本
-            pattern (str): 正则表达式模式
-            
-        Returns:
-            Dict[str, Any]: 解析后的键值对字典
-        """
+
         result = {}  # 存储解析结果的字典
         lines = text.split('\n')  # 按行分割文本
         
@@ -45,15 +37,7 @@ class GameDesignerAgent(BaseAgent):
     """游戏设计师Agent - 负责设计游戏框架和重设计量表"""
     
     def run(self, state) -> Dict[str, Any]:
-        """
-        运行游戏设计师Agent的主要逻辑
-        
-        Args:
-            state: 包含游戏设计所需参数的状态对象
-            
-        Returns:
-            Dict[str, Any]: 包含游戏标题、思考、大纲和重设计量表的结果字典
-        """
+
         # 格式化提示词，插入游戏类型、主题和量表数据
         prompt = ALL_OR_NOTHING_DESIGNER_PROMPT.format(
             type=state.game_type,
@@ -67,15 +51,7 @@ class GameDesignerAgent(BaseAgent):
         return self._parse_response(response)
     
     def _parse_response(self, text: str) -> Dict[str, Any]:
-        """
-        解析游戏设计师的响应文本
-        
-        Args:
-            text (str): 模型生成的原始响应文本
-            
-        Returns:
-            Dict[str, Any]: 结构化解析结果
-        """
+
         try:
             # 使用正则表达式提取游戏名称
             name_match = re.search(r"Name:\s*(.+)", text)
@@ -117,9 +93,9 @@ class GameDesignerAgent(BaseAgent):
             # 解析出错时返回默认值
             print(f"解析游戏设计响应错误: {e}")
             return {
-                "title": "默认游戏",
-                "thoughts": "",
-                "outline": "1. 开始冒险\n2. 遇到挑战\n3. 做出选择", 
+                "title": "designer title error !!!",
+                "thoughts": "designer thoughts error !!!",
+                "outline": "1. designer outline error !!!", 
                 "redesigned_scale": []
             }
 
@@ -127,15 +103,7 @@ class GameControllerAgent(BaseAgent):
     """游戏控制器Agent - 负责生成游戏内容和叙事发展"""
     
     def run(self, state) -> Dict[str, Any]:
-        """
-        运行游戏控制器Agent的主要逻辑
-        
-        Args:
-            state: 包含游戏状态和参数的状态对象
-            
-        Returns:
-            Dict[str, Any]: 包含段落、记忆、指令和问题的结果字典
-        """
+
         # 根据是否为首个迭代选择不同的提示词模板
         if state.current_scale_index == 0:
             prompt = self._create_initial_prompt(state)  # 初始迭代提示词
@@ -148,64 +116,33 @@ class GameControllerAgent(BaseAgent):
         return self._parse_response(response, state.current_scale_index == 0)
     
     def _create_initial_prompt(self, state) -> str:
-        """
-        创建初始迭代的提示词
-        
-        Args:
-            state: 包含游戏状态的对象
-            
-        Returns:
-            str: 格式化后的初始提示词
-        """
+
         # 获取第一个量表项目，确保JSON格式正确
         scale_item = json.dumps(state.redesigned_scale[0]) if state.redesigned_scale else "{}"
-        return f"""
-请作为游戏控制器开始游戏。
-
-游戏标题: {state.title}
-游戏大纲: {state.outline}
-当前量表项目: {scale_item}
-
-请生成游戏的前三个段落，并为第三个段落创建选择指令。
-"""
+        prompt = GAME_CONTROLLER_INITIAL_PROMPT.format(
+            title=state.title,
+            outline=state.outline,
+            scale_item=scale_item
+        )
+        return prompt
     
     def _create_subsequent_prompt(self, state) -> str:
-        """
-        创建后续迭代的提示词
-        
-        Args:
-            state: 包含游戏状态的对象
-            
-        Returns:
-            str: 格式化后的后续提示词
-        """
+
         # 获取当前量表项目
         scale_item = json.dumps(state.redesigned_scale[state.current_scale_index]) if state.redesigned_scale else "{}"
-        return f"""
-继续游戏控制。
-
-游戏标题: {state.title}
-游戏大纲: {state.outline}
-当前进度: {state.progress:.0f}%
-当前记忆: {state.memory}
-上一段落: {state.prev_paragraph}
-当前指令: {state.current_instruction}
-当前量表项目: {scale_item}
-
-请生成下一个段落、更新记忆和新的指令。
-"""
+        prompt = GAME_CONTROLLER_SUBSQUENT_PROMPT.format(
+            title=state.title,
+            outline=state.outline,
+            progress=state.progress,
+            memory=state.memory,
+            prev_paragraph=state.prev_paragraph,
+            current_instruction=state.current_instruction,
+            scale_item=scale_item
+        )
+        return prompt
     
     def _parse_response(self, text: str, is_initial: bool) -> Dict[str, Any]:
-        """
-        解析游戏控制器的响应文本
-        
-        Args:
-            text (str): 模型生成的原始响应文本
-            is_initial (bool): 是否为初始迭代
-            
-        Returns:
-            Dict[str, Any]: 结构化解析结果
-        """
+
         # 根据迭代类型选择不同的解析方法
         if is_initial:
             return self._parse_initial_response(text)
@@ -213,26 +150,21 @@ class GameControllerAgent(BaseAgent):
             return self._parse_subsequent_response(text)
     
     def _parse_initial_response(self, text: str) -> Dict[str, Any]:
-        """
-        解析初始迭代的响应
-        
-        Args:
-            text (str): 模型生成的原始响应文本
-            
-        Returns:
-            Dict[str, Any]: 包含段落、指令和问题的结果字典
-        """
+
         # 使用正则表达式提取所有段落
         paragraphs = re.findall(r"Paragraph \d+:\s*(.+)", text)
-        # 提取所有指令
+        # 提取记忆
+        memory = re.findall(r"Summary:\s*(.+)", text)
+        question_and_its_options = re.findall(r"Question and its Options:\s*(.+)", text)
         instructions = re.findall(r"Instruction \d+:\s*(.+)", text)
         
         # 返回解析结果，使用最后一个段落作为当前段落
         return {
-            "paragraph": " ".join(paragraphs[-1:]) if paragraphs else "故事继续发展...",
-            "memory": "游戏开始摘要",  # 初始记忆
-            "instructions": instructions[:2] if len(instructions) >= 2 else ["继续探索", "谨慎行动"],
-            "question": {"question": "默认问题", "options": {"选项1": 1, "选项2": 0}}
+            "previous_paragraph": paragraphs[-2] if len(paragraphs) >= 2 else "initial previous paragraph parse error !!!",
+            "current_paragraph": paragraphs[-1] if paragraphs else "initial current paragraph parse error !!! ",
+            "memory": memory if memory else ["initial memory error !!!"],
+            "instructions": instructions if len(instructions) == 2 else ["initial instructions parse error !!!"],
+            "question_and_its_options": question_and_its_options if question_and_its_options else ["initial question and its options parse error !!!"]
         }
     
     def _parse_subsequent_response(self, text: str) -> Dict[str, Any]:

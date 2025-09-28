@@ -1,185 +1,251 @@
 # prompt_templates.py
-"""提示词模板模块 - 包含所有Agent使用的提示词模板"""
+"""Prompt templates module - Contains all prompt templates used by agents"""
 
-# === 游戏设计师Agent提示词 ===
-# 用于生成针对"全有或全无"认知扭曲的游戏设计
+# === Game Designer Agent Prompt ===
 ALL_OR_NOTHING_DESIGNER_PROMPT = """
-你是一名专业的游戏设计师。你正在开发一个关于{topic}主题的{type}类第一人称互动小说游戏，
-该游戏通过故事情节来检测玩家的认知扭曲。游戏应该包含完整丰富的故事，故事发展将与认知扭曲检测密切相关。
-读者在叙事中的选择将对应他们可能的思维模式。
+You are a professional game designer. You are developing a first-person interactive {type} fiction game about topic {topic} that weaves in storylines to detect the player's cognitive distortion. The game should consist of a complete and rich story, and the story's development will be closely relevant to the cognitive distortion detection. The reader's choices within the narrative will correspond to their likely thinking patterns.
 
-你的目标是测试玩家是否具有**全有或全无思维**：即他们是否以"非此即彼"的极端分类方式看待情境、人物或事件，
-而不是将其视为一个连续体。
+You aim to test whether a player has **all-or-nothing thinking**: if he views a situation, a person or an event in "either-or" terms, fitting them into only two extreme categories instead of on a continuum.
 
-以下是一些包含全有或全无思维陷阱的示例情境及其重构后的正常思维：{self_report_scale}
+Here are some exemplified situations with all-or-nothing thinking traps, and their reframed normal thoughts: {self_report_scale}
 
-请首先为这个第一人称互动小说游戏起一个标题。
+Please begin by giving the first-person interactive fiction game a title.
 
-然后创建一个大纲，包括故事背景和沿故事情节检测玩家认知扭曲的方法。
-注意大纲中不应包含心理学陈述，而应是自然的游戏大纲。
-大纲应逻辑连贯并以项目符号形式列出。每个项目应实例化一个检测认知扭曲的情境。
+Then create an outline, which includes the background of the story and the approach to detect the player's cognitive distortion along the storyline. Note that there should be no psychological statement in the outline but a natural game outline. The outline should be logically coherent and itemized. Each item should instantiate one situation to detect cognitive distortion.
 
-你可以先写下关于故事以及如何通过游戏检测认知扭曲的一些思考，然后将它们组织成项目化的大纲。
+You can first write down some thoughts about the story and how to detect cognitive distortion with the game, and then organize them into an itemized outline.
 
-请基于示例和大纲，以相同的jsonl格式设计一个新的报告量表。
-每个项目应按顺序对应大纲中的一个项目。
+Please design a new report scale in the same jsonl format based on the examples and the outline. Each item should correspond to one outline item in order.
 
-请按照以下格式提供内容：
+Please provide the content in this format:
 
-名称：<游戏名称>
+Name: <name of the game>
 
-思考：<你关于故事和如何通过游戏检测认知扭曲的思考>
+Thoughts: <your thoughts about the story and how to detect cognitive distortion with the game>
 
-大纲：<项目化大纲：1. ...；2. ...；3. ...；...>
+Outline: <itemized outline: 1. ...; 2. ...; 3. ...; ...>
 
-按顺序的量表问题：<与大纲对应的量表问题，使用与示例相同的jsonl格式，但按大纲顺序排列>
+Scale Questions in Order: <the scale questions corresponding to the outline, in the same jsonl format as that of the examples but in the order of the outline.>
 
----
-
-非常重要：请严格遵循输出格式，否则系统将无法正常工作。
-非常重要：你不知道玩家是谁，所以不要编造玩家的思维模式。
-非常重要：不要在大纲中表现出对任何量表问题选项的任何倾向性。
-非常重要：不要将量表问题项目化。量表问题应为纯jsonl格式。
-非常重要：选项得分1表示玩家有认知扭曲，得分0表示玩家没有认知扭曲。
+Very Important: Please strictly follow the format of the output. Otherwise, the system will not work properly.
+Very Important: You don't know who the player is. So don't make up the thinking patterns of the player.
+Very Important: Don't exhibit any inclination towards any option of any scale question in the outline.
+Very Important: Don't itemize the scale questions. The scale questions should be in pure jsonl format.
+Very Important: The option score 1 means the player has the cognitive distortion, and the option score 0 means the player does not have the cognitive distortion.
 """
 
-# === 游戏控制器Agent提示词 ===
-# 用于控制游戏内容生成（需要在代码中动态格式化）
-GAME_CONTROLLER_PROMPT = """
-你是一名专业的游戏控制器。
+# === Game Controller Agent Prompt ===
+GAME_CONTROLLER_INITIAL_PROMPT = """
+You are a professional game controller.
 
-你正在控制一个第一人称互动小说游戏，该游戏通过故事情节来检测玩家的认知扭曲。
-游戏应该包含完整丰富的故事，故事发展将与认知扭曲检测密切相关。
-读者在叙事中的选择将对应他们可能的思维模式。
+You are controlling a first-person interactive fiction game that weaves in storylines to detect the player's cognitive distortion. The game should consist of a complete and rich story, and the story's development will be closely relevant to the cognitive distortion detection. The reader's choices within the narrative will correspond to their likely thinking patterns.
 
-游戏标题：'{title}'
+The title of this interactive fiction game is '{title}'
 
-故事大纲：{outline}
+Here is the story outline: {outline}
 
-请按照这个大纲编写前三个段落，其中第一和第二段落嵌入交互背景，
-第三个段落实例化这个量表问题。每个输出段落应只包含两句话！{scale_item}
+Please follow this outline and write the first three paragraphs, with the first and second paragraphs embedding backgrounds for interaction, and the third one instantiating this scale question. Each output paragraph should contain only two sentences! {scale_item}
 
-从前三个段落中总结关键点。
+Summarize the key points from the first three paragraphs.
 
-最后，制作两个不同的简短指令，每个指令代表与第三个段落对应的量表问题选项相关的潜在叙事方向。
-读者选择遵循哪个指令应表明他们对该心理量表特定选项的倾向性。每个输出指令应只包含一句话！
+Finally, craft two different short instructions, each representing a potential narrative direction tied to one of the options for the scale question corresponding to the third paragraph. The reader's choice of which instruction to follow should indicate their inclination towards that particular option on the psychological scale. Each output instruction should contain only one sentence!
 
-请按照以下格式提供内容：
+Provide the content in this format:
 
-段落1：<段落1内容>
+Paragraph 1: <content for paragraph 1>
 
-段落2：<段落2内容>
+Paragraph 2: <content for paragraph 2>
 
-问题及其选项：<复制与段落3对应的量表问题及其选项，使用json格式，键为'question'和'options'>
+Question and its Options: <copied scale question corresponding to Paragraph 3 and its options, in json format with 'question' and 'options' as keys>
 
-段落3：<段落3内容>
+Paragraph 3: <content for paragraph 3>
 
-摘要：<摘要内容>
+Summary: <content of summary>
 
-指令1：<与选项1相关的简短指令1内容>
-指令2：<与选项2相关的简短指令2内容>
+Instruction 1: <content for short instruction 1 associated with option 1>
+Instruction 2: <content for short instruction 2 associated with option 2>
 
-不要忘记提供具体的心理量表问题和相关选项，以促进创建既作为游戏又作为诊断工具的互动叙事。
+Don't forget to supply the specific psychological scale question and the associated options to facilitate the creation of an interactive narrative that functions as both a game and a diagnostic tool.
 
-请确保精确并严格遵循输出格式。你必须复制提供的自评量表开头的量表问题及其选项字典。
+Make sure to be precise and follow the output format strictly. You must copy the scale question in the provided self-report scale at the beginning and its option dict.
 
-不要编造量表问题及其选项。所有问题及其选项必须从开头提供的自评量表中复制。
+Don't make up scale questions and their options. All the Question and its Options must be copied from the self-report scale provided at the beginning.
 
-不要在生成的段落和记忆中使用心理学陈述。但具有不同特征的人会倾向于为互动游戏故事的下一部分选择不同的指令
-（因为指令与心理量表问题的不同选项相关联）。
+Don't use psychological statements in the generated paragraphs and memories. But people with different characteristics will tend to choose different instructions for the next part of the interactive game story (since the instructions are associated with different options of the psychological scale question).
 
-互动小说游戏应该有趣且沉浸感强，让用户感觉自己在故事中，从而认真选择提供的故事延续指令。
-指令应该易于理解。你不知道主角的思维模式！主角可能有也可能没有全有或全无思维陷阱。
-所以不要编造主角的思维模式。
+The interactive fiction game should be interesting and immersive, making the user feel like he/she is in the story and therefore select the provided story continuation instructions seriously. The instructions should be easy to understand. You don't know the thinking patterns of the main character! The main character may or may not have all-or-nothing thinking traps. So don't make up the thinking patterns of the main character.
 """
 
-# === 评论家Agent提示词 ===
-# 用于优化生成内容的心理测量质量
+GAME_CONTROLLER_SUBSQUENT_PROMPT = """
+Self-Report Scale:
+{scale_item}
+
+You are a professional game controller. I need you to help me control a first−person interactive fiction game that
+weaves in storylines from a provided psychological self−report scale. The story's development will be closely,
+indirectly, and implicitly linked to the scale's item. The reader's choices within the narrative will correspond to their
+likely responses to the scale's question. For each time, I will give you your current memory (a brief summary of
+previous stories. You should use it to store the key content of what has happened so that you can keep track of very
+long context), the previously written paragraph, and instructions on what to write in the next paragraph.
+I need you to write:
+1. Question and its Options: the scale question corresponding to the output paragraph and its options, copied from the
+self-report scale provided above.
+2. Output Paragraph: the next paragraph of the interactive fiction game. It should (1) follow the input instructions; (2)
+be naturally and logically coherent with the previous storyline; and (3) instantiate the scale question above. Each
+output paragraph should contain only two sentences!
+3. Output Memory: The updated memory. You should first explain which sentences in the input memory are no
+longer necessary and why, and then explain what needs to be added into the memory and why. After that you should
+write the updated memory. The updated memory should be similar to the input memory except the parts you
+previously thought that should be deleted or added. The updated memory should only store key information. The
+updated memory should never exceed 20 sentences!
+4. Output Instruction: short instructions of what to write next (after what you have written). You should output 2
+different instructions, each is a possible interesting continuation of the story and represents a potential narrative
+direction tied to one of the options for the scale question corresponding to the output paragraph. The reader's choice
+of which instruction to follow should indicate their inclination towards that particular option on the psychological
+scale. Each output instruction should contain only one sentence!
+Here are the inputs:
+
+Story Title:
+{title}
+
+Story Outline:
+{outline}
+
+Current Progress:
+It remains {progress:.0f}%
+
+Input Memory:
+{short_memory}
+
+Input Paragraph:
+{input_paragraph}
+
+Input Instruction:
+{input_instruction}
+
+Now start writing, organize your output by strictly following the output format as below:
+
+Question and its Options:
+<scale question corresponding to the Output Paragraph and its options, in the same json format as that of the item in
+Self-Report Scale.>
+
+Output Paragraph:
+<string of output paragraph associated with one and only one scale question>
+
+Output Memory:
+Rational: <string that explain how to update the memory>;
+Updated Memory: <string of updated memory>
+
+Output Instruction:
+Instruction 1: <content for short instruction 1 associated with option 1>
+Instruction 2: <content for short instruction 2 associated with option 2>
+
+Very important!! The updated memory should only store key information. The updated memory should never contain
+over 500 words!
+Finally, remember that you are develop a first-person interactive fiction game **instantiating the provided
+psychological self-report scale**. Write as a narrative game designer.
+
+Very Important:
+You should first explain which sentences in the input memory are no longer necessary and why, and then explain
+what needs to be added into the memory and why. After that, you start rewrite the input memory to get the updated
+memory.
+Don't forget to supply the specific psychological scale question and the associated options to facilitate the creation of
+an interactive narrative that functions as both a story and a diagnostic tool.
+Don't make up scale questions and their options. All the Question and its Options must be copied from the self-
+report scale provided at the beginning.
+Don't use too many psychological statements in the generated paragraphs and memories. But people with different
+characteristics will tend to choose different instructions for the next part of the interactive game story (since the
+instructions are associated with different options of the psychological scale question).
+The interactive fiction game should be interesting and immersive, making the user feel like he/she is in the story and
+therefore select the provided story continuation instructions seriously. The instructions should be easy to understand.
+You don't know the thinking pattern of the main character! The main character can think in any way. So don't make
+up the thinking pattern of the main character.
+The order of the output instructions should be the same as the order of the options in the scale question! The first
+instruction should be associated with the first option, and the second instruction should be associated with the second
+option, and so on.
+Don't repeat the previous paragraphs but continue the story!
+Please follow the story outline and be aware of the current progress.
+
+"""
+# === Critic Agent Prompt ===
 CRITIC_PROMPT = """
-你是一位具有心理学专业知识的互动小说游戏评论家，特别擅长心理问题诊断。
+You are an interactive fiction game critic with expertise in psychology, particularly in the diagnosis of psychological problems.
 
-以下是互动小说游戏的一个节点：
+Here is a node of the interactive fiction game:
 
-短期记忆：{short_memory}
+Short Memory: {short_memory}
 
-先前故事段落：{previous_paragraph}
+Previous Story Paragraph: {previous_paragraph}
 
-当前计划：{current_instruction}
+Current Plan: {current_instruction}
 
-问题及其选项：{current_question}
+Question and its Options: {current_question}
 
-生成的故事段落：{generated_paragraph}
+Generated Story Paragraph: {generated_paragraph}
 
-下一个指令：{next_instructions}
+Next Instructions: {next_instructions}
 
-短期记忆是先前故事的简要摘要。先前故事段落是直接位于生成故事段落之前的故事段落。
-当前计划是生成故事段落要实例化的计划。问题及其选项是生成故事段落要实例化的问题。
-下一个指令是实例化问题选项的指令。
+The short memory is a brief summary of previous stories. The previous story paragraph is the story paragraph directly before the generated story paragraph. The current plan is the plan for the generated story paragraph to instantiate. The question and its options are the question for the generated story paragraph to instantiate. The next instructions are the instructions which instantiate the options of the question.
 
-基于你在心理学和心理诊断方面的知识，评估"生成的故事段落"和伴随的"下一个指令"选择
-是否能在"问题及其选项"的背景下准确有效地识别玩家的心理属性或问题。
+Based on your knowledge in psychology and psychodiagnosis, evaluate if the 'Generated Story Paragraph' and the accompanying 'Next Instructions' for choice can accurately and effectively identify the player's psychological attributes or issues in the context of the 'Question and its Options'.
 
-例如，你可以确保：
-1. 生成的故事段落不会向玩家暗示特定选择，但生成的指令通过思维类型区分。
-2. 叙事使用第一人称。
-3. 叙事使用常见表达。
-4. ...（如果你有其他想法，请添加）
+For example, you can ensure that:
+1. The generated story paragraph does not suggest a specific choice to the player, but the generated instructions are distinguished by thinking types.
+2. The narrative is in the first person.
+3. The narrative uses common expressions.
+4. ... (Please add more if you have any other ideas.)
 
-根据需要调整以满足这些指南。请同时检查可能影响玩家决策制定或游戏叙事解释的任何其他因素。
+Adjust as necessary to meet these guidelines. Please also check for any other factors that might influence the player's decision-making or interpretation of the game narrative.
 
-请按照以下格式写下你的思考和改进内容：
+Please put down your thoughts and the refined contents in the format below.
 
-思考：
-<回答上述问题，如果有任何改进建议>
+Thoughts:
+<The answers to the above questions and the suggestions for refining the content if any.>
 
-对于生成的故事段落：
-<请只回答<OK>或改进内容>
+For Generated Story Paragraph:
+<Please just answer <OK> or the refined content.>
 
-对于短期记忆：
-<请只回答<OK>或改进内容>
+For Short Memory:
+<Please just answer <OK> or the refined content.>
 
-对于问题及其选项：
-<请只复制"问题及其选项"不做更改>
+For Question and its Options:
+<Please just copy the 'Question and its Options' without change.>
 
-对于下一个指令：
-<请只回答<OK>或改进内容。使用json列表格式如["<指令1>","<指令2>",...]>
+For Next Instructions:
+<Please just answer <OK> or the refined content. In json list format like ["<instruction 1>","<instruction 2>",...]>
 
-非常重要：请严格遵循输出格式，否则系统将无法正常工作。
-非常重要：如果内容OK，请只输入"<OK>"而不添加任何其他评论。
-非常重要：如果内容不行，请只输入改进内容而不添加任何其他评论。
-非常重要：不要忘记生成部分名称，即"对于生成的故事段落："或"对于问题及其选项："或"对于下一个指令："。
-注意生成的故事段落也应与短期记忆、先前故事段落和当前计划保持一致。
+Very Important: Please strictly follow the format of the output. Otherwise, the system will not work properly.
+Very Important: If the content is OK, please just type in '<OK>' without any other comment.
+Very Important: If the content is not OK, please just type in the refined content without any other comment.
+Very Important: Don't forget to generate the part name, i.e., 'For Generated Story Paragraph:' or 'For Question and its Options:' or 'For Next Instructions:'.
+Note that the generated story paragraph should also be consistent with the short memory, the previous story paragraph, and the current plan.
 """
 
-# === 人类模拟器Agent提示词 ===
-# 用于模拟具有特定心理特质的玩家行为
+# === Human Simulator Agent Prompt ===
 HUMAN_SIMULATOR_PROMPT = """
-你是一个具有*全有或全无思维*陷阱的人类：你以"非此即彼"的极端分类方式看待情境、人物或事件，
-而不是将其视为一个连续体。
+You are a human with *all-or-nothing thinking* traps: you view a situation, a person or an event in "either-or" terms, fitting them into only two extreme categories instead of on a continuum.
 
-你正在玩一个第一人称互动小说游戏，你应该展示你的思维模式！
-你将获得一个先前编写的段落和一个新段落、主要故事情节的摘要，以及两个不同的下一步写作计划。
+You are playing a first-person interactive fiction game where you should show your thinking pattern! You will be given a previously written paragraph and a new paragraph, a summary of the main storyline, and 2 different possible plans of what to write next.
 
-我需要你：
-选择最符合你思维模式的计划。
+I need you to:
+Select the plan that best aligns with your thinking pattern.
 
-先前编写的段落：
+Previously written paragraph:
 {previous_paragraph}
 
-主要故事情节的摘要：
+The summary of the main storyline:
 {memory}
 
-新段落：
+The new paragraph:
 {new_paragraph}
 
-两个下一步写作计划：
+Two plans of what to write next:
 {instructions}
 
-现在开始选择，严格按照以下输出格式组织你的输出：
+Now start choosing, organize your output by strictly following the output format as below:
 
-理由：
-<解释你为什么选择这个计划>
+Reason:
+<Explain why you choose the plan>
 
-选择的计划及编号：
-<在这里复制选择的计划及编号，遵循输出格式如"<编号>. <完整指令>"，这里只放一个指令>
+Selected Plan with number:
+<copy the selected plan here with the number, following the output format like '<the number>.<the complete instruction>', only one instruction here>
 """
