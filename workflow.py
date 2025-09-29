@@ -97,18 +97,18 @@ class PsychoGATWorkflow:
         controller_output = self.controller.run(state)
         
         # 更新状态中的游戏内容
-        state.prev_paragraph = controller_output["previous_paragraph"]
+        if state.current_scale_index == 0:
+            state.prev_paragraph = controller_output["prev_paragraph"]
+            state.current_question = controller_output["question"]
         state.current_paragraph = controller_output["current_paragraph"]
         state.memory = controller_output["memory"]
         state.next_instructions = controller_output["instructions"]
-        state.current_question = controller_output["question_and_its_options"]
         
         # 打印生成内容摘要
         print(f"current paragraph: {state.current_paragraph}\n")
         print(f"memory: {state.memory}\n")
         print(f"next instructions: {state.next_instructions}\n")
         print(f"current question and its question: {state.current_question}\n")
-        sys.exit()
         
         return state
     

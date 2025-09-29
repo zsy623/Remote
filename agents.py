@@ -134,9 +134,9 @@ class GameControllerAgent(BaseAgent):
             title=state.title,
             outline=state.outline,
             progress=state.progress,
-            memory=state.memory,
-            prev_paragraph=state.prev_paragraph,
-            current_instruction=state.current_instruction,
+            short_memory=state.memory,
+            input_paragraph=state.prev_paragraph,
+            input_instruction=state.current_instruction,
             scale_item=scale_item
         )
         return prompt
@@ -160,35 +160,28 @@ class GameControllerAgent(BaseAgent):
         
         # 返回解析结果，使用最后一个段落作为当前段落
         return {
-            "previous_paragraph": paragraphs[-2] if len(paragraphs) >= 2 else "initial previous paragraph parse error !!!",
+            "prev_paragraph": paragraphs[-2] if len(paragraphs) >= 2 else "initial previous paragraph parse error !!!",
             "current_paragraph": paragraphs[-1] if paragraphs else "initial current paragraph parse error !!! ",
             "memory": memory if memory else ["initial memory error !!!"],
             "instructions": instructions if len(instructions) == 2 else ["initial instructions parse error !!!"],
-            "question_and_its_options": question_and_its_options if question_and_its_options else ["initial question and its options parse error !!!"]
+            "question": question_and_its_options if question_and_its_options else ["initial question and its options parse error !!!"]
         }
     
     def _parse_subsequent_response(self, text: str) -> Dict[str, Any]:
-        """
-        解析后续迭代的响应
         
-        Args:
-            text (str): 模型生成的原始响应文本
-            
-        Returns:
-            Dict[str, Any]: 包含段落、记忆、指令和问题的结果字典
-        """
         # 提取输出段落
-        paragraph_match = re.search(r"Output Paragraph:\s*(.+)", text)
+        paragraph = re.findall(r"Output Paragraph:\s*\n\s*(.+)", text)
         # 提取更新后的记忆
-        memory_match = re.search(r"Updated Memory:\s*(.+)", text)
+        memory = re.findall(r"Updated Memory:\s(.+)", text)
         # 提取所有指令
         instructions = re.findall(r"Instruction \d+:\s*(.+)", text)
         
         return {
-            "paragraph": paragraph_match.group(1) if paragraph_match else "故事进一步发展...",
-            "memory": memory_match.group(1) if memory_match else "更新后的记忆",
-            "instructions": instructions[:2] if len(instructions) >= 2 else ["积极前进", "保守选择"],
-            "question": {"question": "当前情境问题", "options": {"积极行动": 1, "谨慎应对": 0}}
+            "prev_paragraph": "Subsequent previous paragraph parse error.",
+            "current_paragraph": paragraph if paragraph else "subsequent current paragraph parse error !!!",
+            "memory": memory if memory else "subsequent memory parse error !!!",
+            "instructions": instructions[:2] if len(instructions) >= 2 else ["subsequent instructions 1 parsed error", "subsequent instructions 2 parsed error !!!"],
+            "question": {"question": "subsequent question parsed error !!!", "options": {"subsequent option 1 error !!!": 1, "subsequent option 2 error !!!": 0}}
         }
 
 class CriticAgent(BaseAgent):

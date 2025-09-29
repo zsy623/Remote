@@ -1,33 +1,147 @@
 开始PsychoGAT评估流程...
 === 游戏设计阶段 ===
-Title: The Labyrinth of Echoes
-Outline: 1.  **Prologue: The Scholar's Hubris.** The player, Elara, gives a lecture on her theories about the Labyrinth of Echoes. A rival scholar publicly mocks a minor error in her historical timeline, attempting to discredit her entire thesis. The player must choose how Elara internalizes this criticism.
-2.  **The Whispering Gorge.** The player must cross a deep chasm on an ancient, crumbling bridge. Halfway across, a section collapses. The player is given a choice: attempt a dangerous but possible jump to the other side, or retreat and seek a much longer, safer alternative path.
-3.  **The Grieving Guardian.** The player meets Kael, the last guardian of the labyrinth, who is consumed by grief after failing to stop a tragedy that befell his people. He believes his single failure makes him entirely unworthy of his title and duty. The player can engage with his story.
-4.  **The Mirror of Fragments.** The player encounters a magical mirror that shows splintered reflections of past actions. It highlights the recent bridge crossing and the lecture incident, asking the player to interpret these events.
-5.  **The Heart of the Labyrinth.** The player reaches the core of the labyrinth, which presents not a single monster to defeat, but a complex, multi-layered puzzle with several interacting components. The initial attempts to solve it are met with failure, causing environmental instability.
-6.  **Epilogue: The Echo's Truth.** Based on the player's previous choices, the labyrinth reveals its final secret. It either manifests as a path of harsh, absolute judgment or a chamber of balanced, accepting light, providing a concluding narrative that reflects the player's journey.
-Len of Redesigned Scale: 6
+Title: The Fractured Crown of Eldoria
+Outline: 1. The player is tasked by the Royal Historian with finding the five shards of the Crown of Eldoria. The first shard is located in the Sunken Archives. The player must solve a series of environmental puzzles to drain the archive and access the central chamber. If the player fails a puzzle on the first attempt, they are given the opportunity to try again with a different approach. The choice here reflects the player's view on initial failure.
+2. The player finds the first shard, but it is inert and lacks its legendary glow. An ancient guardian spirit appears and explains that the shard's power is dormant and must be "awakened" through a ritual of contemplation, which takes time. The player's reaction to this delay and the shard's initial state is a measure of their patience and acceptance of an imperfect start.
+3. The player travels to the Ashen Peaks to find the second shard, guarded by a reclusive and grumpy Dwarven smith. The smith initially refuses to help, insulting the player's "soft" scholarly methods. The player must persuade him. The choice reflects the player's tendency to categorize the smith based on his initial hostility.
+4. After a rockslide blocks the main path, the player and the smith must work together to clear it. The smith suggests a slow, methodical approach, while the player might intuit a faster but riskier one. The success of the collaboration is not binary; even a "failed" attempt progresses the situation, testing the player's view on cooperative success.
+5. The player finds the second shard, but it is cracked. The Dwarven smith states that while flawed, it can still be used in the restoration, though the final crown will bear a "scar." The player's decision on whether to use the imperfect shard reveals their acceptance of flawed components in a greater whole.
+6. Seeking the third shard, the player consults a nomadic Elf clan. The clan's elder gives the player a map that is ancient and partially inaccurate, leading them into a dangerous, monster-infested swamp instead of the safe path. The player's reaction to this setback, caused by flawed information, is measured.
+7. In the swamp, the player finds a wounded beast. They can choose to help it, despite it being a potential threat, or leave it to its fate. The choice reflects whether the player views the creature in a single category (e.g., "monster") or on a continuum of a living being that can be in pain.
+8. The third shard is found deep within a cave system. The player must navigate using glowing fungi that provide dim, intermittent light, making the path unclear and easy to get lost. The player's internal commentary (via choice) on this frustrating process reveals their tolerance for ambiguity and imperfect guidance.
+9. The player learns from an ancient text that the Crown was shattered not by a villain, but by its last wearer, Queen Lyra, in a moment of despair to prevent its power from being misused. This morally complex history challenges a purely "good vs. evil" narrative. The player's interpretation of Queen Lyra's action is a key indicator.
+10. The final challenge is not a battle, but the ritual of restoration itself. The player must combine the shards. The ritual is difficult, and the crown flickers unstably at first. The player's final choice reflects their overall conclusion about the entire quest based on this final, tense moment.
+Len of Redesigned Scale: 10
 Redesigned Scale:
 
-- {'question': 'After my public mistake was pointed out, I feel...', 'options': {'My entire theory is now invalid and I am a fraud.': 1, 'I made an error, but the core of my research still has merit.': 0}}
+- {'question': 'You failed a puzzle in the Sunken Archives on your first try. What is your thought?', 'options': {"This proves I'm not clever enough for this quest.": 1, 'This is a setback, but I can learn from it and try a new strategy.': 0}}
 
-- {'question': 'Faced with the collapsed bridge, I think...', 'options': {"Turning back is a complete failure and proves I'm not a true adventurer.": 1, 'Finding another way is a strategic choice, not a defeat.': 0}}
+- {'question': 'The first shard you found is dull and inert. The guardian says it will take time to awaken. What is your thought?', 'options': {"This is a worthless piece of rock. I've been sent on a fool's errand.": 1, "It's not what I expected, but most great things start from humble beginnings.": 0}}
 
-- {'question': "Listening to Kael's story of failure, I believe...", 'options': {"One major failure can indeed define a person's entire worth.": 1, "A person's life is the sum of all their actions, successes, and failures.": 0}}
+- {'question': 'The Dwarven smith is hostile and refuses to help you. What is your thought?', 'options': {'He is a stubborn, bad person who will never help.': 1, 'He is being difficult now, but people can have complex reasons for their behavior.': 0}}
 
-- {'question': 'Reflecting on my journey so far in the Mirror of Fragments, I see it as...', 'options': {'A series of mistakes and poor judgments.': 1, 'A challenging path with both setbacks and progress.': 0}}
+- {'question': "Your plan to clear the rockslide with the smith didn't work perfectly, though you still made progress. What is your thought?", 'options': {'Our partnership is a failure.': 1, "We didn't succeed completely, but we are closer than we were before.": 0}}
 
-- {'question': 'As the central puzzle resists my initial solutions, I conclude...', 'options': {'This is impossible. I am not smart enough to solve it.': 1, 'This is complex and requires patience and a new approach.': 0}}
+- {'question': 'The second shard is cracked. The smith says the restored crown will be permanently scarred. What is your thought?', 'options': {'A flawed shard will make the entire crown worthless. I should leave it.': 1, 'Something can be both imperfect and still be whole, powerful, and valuable.': 0}}
 
-- {'question': 'The final revelation of the labyrinth shows that its true nature is...', 'options': {'An ultimate test that I have either passed perfectly or failed completely.': 1, 'A journey of understanding, where the path itself is the lesson.': 0}}
+- {'question': "The Elf elder's map was wrong and led you into danger. What is your thought?", 'options': {'The elder deliberately misled me. I cannot trust any of them.': 1, "The map was old and imperfect, not a reflection of the elder's intent.": 0}}
+
+- {'question': 'You encounter a wounded, dangerous-looking beast in the swamp. What is your thought?', 'options': {"It's a monster. Its suffering is irrelevant.": 1, 'It is a living creature in pain, even if it is dangerous.': 0}}
+
+- {'question': 'Navigating the caves by the dim, unreliable fungal light is frustrating and slow. What is your thought?', 'options': {"This is a complete waste of time and I'm getting nowhere.": 1, 'This is a difficult process, but each step is moving me forward, even if slowly.': 0}}
+
+- {'question': 'You learn the noble Queen Lyra herself shattered the crown in a moment of despair. What is your thought?', 'options': {'She was a failure and a destroyer, not a hero.': 1, 'Her action was a complex mix of strength and weakness, like all people.': 0}}
+
+- {'question': 'During the final ritual, the crown flickers unstably, threatening to shatter again. What is your final thought on your quest?', 'options': {"All of this was for nothing. It's going to fail.": 1, 'This is a critical moment, but not the final judgment on the entire journey.': 0}}
 
 === 游戏控制阶段 (第1个项目) ===
-current paragraph: As you step into the darkness, the stone passage seems to whisper the very doubts seeded by your rival, making each footfall feel like a test of your worthiness. You must choose whether to let this single failure define your entire quest or to see it as a minor misstep on a larger, more important journey.
+current paragraph: The mechanism resets itself, its ancient gears groaning as the blocked grate retracts, presenting you with a clean slate and a chance to attempt the puzzle once more. Do you see this as a final test of your worth or as another opportunity to succeed?
 
-memory: ['Elara, a scholar, gave a lecture on the Labyrinth of Echoes but was publicly corrected on a minor point by a rival, casting doubt on her entire thesis. She has since traveled to the Labyrinth to prove her theory, but the memory of the humiliation haunts her as she enters. The narrative now presents her with a choice on how to internalize that criticism as she begins her exploration.']
+memory: ['The player has failed their first attempt at a puzzle needed to drain the Sunken Archives, and the mechanism has reset, giving them another chance to solve it.']
 
-next instructions: ['Focus on finding proof that your entire theory is flawless to silence your critics completely.', 'Proceed with caution, acknowledging the mistake but seeking the larger truth that supports your main argument.']
+next instructions: ["Give up on the complex mechanism and search the chamber's perimeter for a simpler, more obvious solution.", 'Carefully re-examine the levers and pipes, looking for a sequence you may have missed on your first attempt.']
 
-current question and its question: ['{"question": "After my public mistake was pointed out, I feel...", "options": {"My entire theory is now invalid and I am a fraud.": 1, "I made an error, but the core of my research still has merit.": 0}}']
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
 
+=== 评论家优化阶段 ===
+批评家迭代: 1
+=== 游戏控制阶段 (第1个项目) ===
+current paragraph: The initial failure hangs in the air, a tangible weight as you stare at the unyielding door and the still, dark water. You must now decide how to interpret this setback before attempting to solve the puzzle once more.
+
+memory: ['The player is at the entrance to the Sunken Archives, tasked with finding the first crown shard. Their first attempt to solve the water-draining puzzle by pressing symbols on pedestals fails, leaving the door sealed and the chamber flooded, and they must now react to this initial failure.']
+
+next instructions: ['Give up on the puzzle and report your failure to the Royal Historian.', 'Re-examine the pedestals for clues you might have missed.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 评论家优化阶段 ===
+批评家迭代: 2
+=== 游戏控制阶段 (第1个项目) ===
+current paragraph: As the echoes of the failed mechanism fade, you stare at the stubbornly blocked archway, the weight of the Royal Historian's trust feeling heavy upon your shoulders.
+
+memory: ['The player is introduced to their quest for the Crown of Eldoria and faces their first environmental puzzle in the Sunken Archives. After an initial attempt fails to drain the chamber, the player is left to contemplate their reaction to this setback.']
+
+next instructions: ['Turn away from the puzzle in defeat, convinced the archives are beyond your skill.', 'Closely examine the seized mechanism for clues on a different approach to drain the chamber.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 人类模拟器选择 ===
+选择的指令: Turn away from the puzzle in defeat, convinced the archives are beyond your skill.
+=== 心理测量评估 ===
+当前得分: 1
+累计得分: 1
+进度: 10.0% (1/10)
+=== 游戏控制阶段 (第2个项目) ===
+current paragraph: ['After a final, frustrated kick at the unyielding stone, you turn your back on the puzzle, the image of the inert, dull shard you were promised now seeming like a cruel joke. The journey here feels wasted, and the Crown of Eldoria a childish fantasy not worth the effort.']
+
+memory: ["['The player, after failing the first puzzle in the Sunken Archives, has abandoned the attempt and now views the quest for the Crown of Eldoria with cynicism, believing the promised shard to be worthless.']"]
+
+next instructions: ['Stomp out of the Sunken Archives, resolved to tell the Royal Historian the quest is impossible.', 'Take a deep breath and turn back to the puzzle, determined to find another way to drain the chamber.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 评论家优化阶段 ===
+批评家迭代: 1
+=== 游戏控制阶段 (第2个项目) ===
+current paragraph: ["You finally manage to drain the archive and find the first shard, but it lies cold and gray in your palm, utterly devoid of the legendary power you were promised. An ancient guardian materializes, its voice echoing from the stone, and informs you that the shard's latent energy requires a lengthy ritual of contemplation to awaken."]
+
+memory: ['The player has successfully drained the Sunken Archives and retrieved the first Crown shard. The shard is inert and lacks power. An ancient guardian has appeared, stating the shard requires a lengthy ritual to awaken.']
+
+next instructions: ['Toss the dull shard aside in disgust and demand the guardian provide you with a real one.', "Accept the guardian's words and begin the slow, patient ritual to awaken the shard."]
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 评论家优化阶段 ===
+批评家迭代: 2
+=== 游戏控制阶段 (第2个项目) ===
+current paragraph: ["You turn from the archway, the historian's words of a legendary, glowing crown now feeling like a cruel joke as you hold the first shard—a dull, lifeless piece of stone. An ancient guardian materializes, its voice echoing through the chamber to explain that the shard's power is dormant and will require a long ritual of contemplation to awaken."]
+
+memory: ["The player has obtained the first shard of the Crown of Eldoria from the Sunken Archives. The shard is dull, inert, and lacks any power. An ancient guardian has appeared and stated the shard's power is dormant, requiring a lengthy ritual to awaken."]
+
+next instructions: ["Dismiss the guardian's words and pocket the shard with contempt, convinced the quest is a waste of time.", "Accept the guardian's explanation and begin the ritual, trusting that its power will manifest in time."]
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 人类模拟器选择 ===
+选择的指令: Dismiss the guardian's words and pocket the shard with contempt, convinced the quest is a waste of time.
+=== 心理测量评估 ===
+当前得分: 1
+累计得分: 2
+进度: 20.0% (2/10)
+=== 游戏控制阶段 (第3个项目) ===
+current paragraph: ['You arrive at the forge of Borin Stonehand, the master smith of the Ashen Peaks, only for him to slam his hammer down and snarl that he has no time for "soft-handed scholars" and their foolish quests. His face is a mask of pure contempt as he turns his broad back to you, effectively ending the conversation.']
+
+memory: ['["The player has obtained the first inert shard of the Crown of Eldoria, which requires a ritual to awaken. The Dwarven smith Borin Stonehand has been encountered and has refused to help the player, displaying hostility."]']
+
+next instructions: ['Decide he is just a stubborn, bad person and leave to find the shard on your own.', 'Try to look past his anger and search for a reason behind his hostile behavior.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 评论家优化阶段 ===
+批评家迭代: 1
+=== 游戏控制阶段 (第3个项目) ===
+current paragraph: ['Ignoring the guardian\'s plea for patience, you shove the inert shard into your pack and storm out of the Sunken Archives, your journey now leading you to the volcanic Ashen Peaks. There, you find the reclusive Dwarven smith Borin, who gruffly examines your shard before throwing it back at you, calling you a "soft-handed scholar" and refusing to aid your quest.']
+
+memory: ['The player dismissed the guardian and pocketed the first, inert shard with contempt. The player has traveled to the Ashen Peaks and met the Dwarven smith Borin, who was hostile and refused to help.']
+
+next instructions: ['Storm off, convinced the smith is just a stubborn, bad person who will never help.', 'Suppress your frustration and try to see past his gruff exterior, considering that he might have complex reasons for his behavior.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 评论家优化阶段 ===
+批评家迭代: 2
+=== 游戏控制阶段 (第3个项目) ===
+current paragraph: ["You scoff at the guardian's explanation, shoving the inert shard into your pack with a grumble about foolish legends, and begin your journey to the Ashen Peaks. There, you find the second shard is held by a Dwarven smith named Borin, who meets you at his forge door with crossed arms and a dismissive snort, immediately refusing your request for aid."]
+
+memory: ["The player possesses the first, dormant shard of the Crown. After a negative reaction to the guardian's ritual, they have traveled to the Ashen Peaks. The second shard is guarded by a Dwarven smith named Borin, who is initially hostile and refuses to help."]
+
+next instructions: ["Decide he's just a stubborn, bad person and prepare to leave or find a way to take the shard by force.", 'Try to look past his gruff exterior and attempt to understand why he is so resistant to helping.']
+
+current question and its question: ['{"question": "You failed a puzzle in the Sunken Archives on your first try. What is your thought?", "options": {"This proves I\'m not clever enough for this quest.": 1, "This is a setback, but I can learn from it and try a new strategy.": 0}}']
+
+=== 人类模拟器选择 ===
+选择的指令: Decide he's just a stubborn, bad person and prepare to leave or find a way to take the shard by force.
+=== 心理测量评估 ===
+当前得分: 1
+累计得分: 3
+进度: 30.0% (3/10)
